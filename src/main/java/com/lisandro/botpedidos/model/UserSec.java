@@ -11,7 +11,16 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Getter @Setter
+import java.util.Set;
+import java.util.HashSet;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.CascadeType;
+import jakarta.persistence.JoinTable;
+import jakarta.persistence.JoinColumn;
+
+@Getter
+@Setter
 @Table(name = "users")
 @AllArgsConstructor
 @NoArgsConstructor
@@ -28,7 +37,9 @@ public class UserSec {
     private boolean accountNotLocked;
     private boolean credentialNotExpired;
 
-    // DEFINIR RELACION CON ROLES
+    // Relación muchos a muchos con roles
+    @ManyToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    @JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id"), inverseJoinColumns = @JoinColumn(name = "role_id"))
     private Set<Role> rolesList = new HashSet<>();
 
 }
