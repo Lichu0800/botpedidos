@@ -1,4 +1,4 @@
-package com.lisandro.botpedidos.Service;
+package com.lisandro.botpedidos.service;
 
 import java.util.List;
 import java.util.Optional;
@@ -6,9 +6,8 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
-
-import com.lisandro.botpedidos.Repository.IUserSecRepository;
 import com.lisandro.botpedidos.model.UserSec;
+import com.lisandro.botpedidos.repository.IUserSecRepository;
 
 @Service
 public class UserService implements IUserService {

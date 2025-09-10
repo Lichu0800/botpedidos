@@ -1,4 +1,4 @@
-package com.lisandro.botpedidos.Repository;
+package com.lisandro.botpedidos.repository;
 
 import java.security.Permission;
 
