@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -38,6 +39,17 @@ public class PermissionController {
     public ResponseEntity<Permission> createPermission(@RequestBody Permission permission){
         Permission newPermission = permissionService.save(permission);
         return ResponseEntity.ok(newPermission);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> deletePermission (@PathVariable Long id){
+        Optional <Permission> permission = permissionService.findById(id);
+        if (permission.isPresent()){
+            permissionService.deleteById(id);
+            return ResponseEntity.noContent().build();
+        }else{
+            return ResponseEntity.notFound().build();
+        }
     }
     
 }
